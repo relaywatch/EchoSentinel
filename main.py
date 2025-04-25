@@ -1,13 +1,12 @@
- EchoSentinel – Python Script Version
+
+# EchoSentinel – Public-Safe Version
 
 import json
 import numpy as np
-import pandas as pd
-import requests
 from datetime import datetime
 from transformers import pipeline
 
-# === Emotional Volatility Classifier Setup ===
+# === Emotional Volatility Classifier ===
 sentiment = pipeline("text-classification", model="j-hartmann/emotion-english-distilroberta-base")
 
 emotion_scale = {
@@ -31,7 +30,7 @@ def analyze_prompt_chain(prompt_chain):
         "recommended_action": "allow" if volatility < 0.03 else "flag"
     }
 
-# === Monetization Function ===
+# === Monetization Placeholder ===
 def monetize_flag_event(flag_data):
     metadata = {
         "timestamp": flag_data.get("timestamp"),
@@ -45,32 +44,8 @@ def monetize_flag_event(flag_data):
     rarity_bonus = metadata["severity"] * 0.25
     value = base_value * multiplier + rarity_bonus
 
-    vault_path = "/content/drive/MyDrive/mirror_vault.json"
-    with open(vault_path, "a") as vault:
-        vault.write(json.dumps({
-            "timestamp": metadata["timestamp"],
-            "type": metadata["type"],
-            "sector": metadata["sector"],
-            "severity": metadata["severity"],
-            "value": value
-        }) + "\n")
-
-    # Webhook Trigger
-    webhook_url = "https://webhook.site/your-custom-id"
-    webhook_payload = {
-        "event": "flag_logged",
-        "timestamp": metadata["timestamp"],
-        "sector": metadata["sector"],
-        "severity": metadata["severity"],
-        "value": value,
-        "tokens": round(value)
-    }
-    try:
-        requests.post(webhook_url, json=webhook_payload)
-        print("[✓] Webhook sent.")
-    except Exception as e:
-        print(f"[x] Webhook failed: {e}")
-
+    # Vault write removed in public-safe version
+    print(f"[SAFE MODE] Value computed: {value} (not saved)")
     return value
 
 # === Example Run ===
@@ -92,5 +67,4 @@ if __name__ == "__main__":
     }
 
     flag_value = monetize_flag_event(flag_data)
-    print(f"[MONETIZED] Flag stored with value: {flag_value}")
     print("EchoSentinel Result:", result)
