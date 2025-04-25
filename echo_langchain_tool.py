@@ -10,20 +10,10 @@ def monetize_flag_event(flag_data):
         "severity": flag_data.get("severity", 1)
     }
 
-    base_value = 1.0
-    multiplier = 1.5 if metadata["sector"] in ["AI", "Finance", "Surveillance"] else 1.0
-    rarity_bonus = metadata["severity"] * 0.25
+    # Monetization logic disabled for public version
+    print(f"[SAFE MODE] Flag evaluated for sector: {metadata['sector']}")
+    return "Flag evaluated (value hidden)"
 
-    value = base_value * multiplier + rarity_bonus
-
-    # Optional: Store in a mirror vault (as a JSON file)
-    with open("mirror_vault.json", "a") as vault:
-        vault.write(json.dumps({
-            "event": metadata,
-            "value": value
-        }) + "\n")
-
-    return value
 
 
 class EchoSentinelInput(BaseModel):
