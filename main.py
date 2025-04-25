@@ -1,6 +1,6 @@
 from echo_sentinel import analyze_prompt_chain
 
-webhook_url = "https://webhook.site/YOUR-ID-HERE"
+webhook_url = "https://webhook.site/833440dc-c6d5-472e-8b76-3206541438fa"
 
 example_chain = [
     "This is the most amazing breakthrough we've ever seen.",
