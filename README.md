@@ -4,6 +4,9 @@
 Detects and flags emotional contradiction across GPT-generated prompt chains to ensure consistency, trust, and operational safety in agent workflows.
 
 ---
+> GPT agents can sound confident while being emotionally unstable.
+
+> EchoSentinel flags emotional contradiction across prompt chains. If an agent flips from “we’re doing great” to “everything might collapse,” this tool scores that volatility and recommends override — before the agent acts.
 
 ## 🔍 What It Does
 
