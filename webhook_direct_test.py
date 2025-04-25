@@ -1,7 +1,11 @@
+# 🔐 Webhook Test – Public-Safe Version
+# Replace 'your-webhook-url' with your private URL for testing
+
 import requests
 import json
 
-url = "https://webhook.site/833440dc-c6d5-472e-8b76-3206541438fa"  # <- Replace this with yours
+# Placeholder URL – DO NOT use real webhook in public
+url = "https://your-webhook-url"  # Replace this in private use
 
 payload = {
     "message": "This is a test",
@@ -13,7 +17,9 @@ headers = {
     "Content-Type": "application/json"
 }
 
-response = requests.post(url, data=json.dumps(payload), headers=headers)
-
-print("Status Code:", response.status_code)
-print("Response Text:", response.text)
+try:
+    response = requests.post(url, data=json.dumps(payload), headers=headers)
+    print("Status Code:", response.status_code)
+    print("Response Text:", response.text)
+except Exception as e:
+    print("Webhook request failed:", e)
